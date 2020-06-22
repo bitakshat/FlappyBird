@@ -1,2 +1,4 @@
-2nd stage complete(add pipe objects)
-Don't forget to change the path of the images in the code. Path varies from os
+## Python3 Flappy Bird Game
+Usage: ```python3 flappyBird.py ```
+
+> Note: Don't forget to change the path of imaged in the main source file ```flappyBird.py```
