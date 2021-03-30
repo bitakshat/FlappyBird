@@ -1,4 +1,9 @@
 ## Python3 Flappy Bird Game
-Usage: ```python3 flappyBird.py ```
+Usage: Mac/Linux ```python3 flappyBird.py ```
+       Windows: ```winpty py.exe flappyBiard.py```
 
-> Note: Don't forget to change the path of imaged in the main source file ```flappyBird.py```
+## Dependencies
+``` pygame ^v1.9.4 or up
+	use > pip install pygame
+	to install pygame latest version
+``` 
