@@ -3,6 +3,7 @@ import pygame
 import random
 
 pygame.init()
+pygame.font.init()
 class FlappyBird:
 	width = 500
 	height = 400
@@ -20,6 +21,9 @@ class FlappyBird:
 	upForce = 5
 	game_out = 10
 	score = 0
+
+	# display score 
+	font = pygame.font.SysFont('arialblack', 24)
 
 	# message to inform
 	message = [
@@ -54,6 +58,13 @@ class FlappyBird:
 					if event.key == pygame.K_SPACE:
 						self.velocity -= self.gravity*15
 
+			# text and score
+			self.text = self.font.render('Score', True, (0,0,0))
+			self.render_score = self.font.render(f"{self.score}", True, (0,0,0))
+			self.window.blit(self.render_score, (430, 20) )
+			self.window.blit(self.text, (330, 20))
+			pygame.display.update()
+
 			self.window.fill((130,255,255))
 			# adding gravity for bird
 			self.velocity += self.gravity
@@ -69,7 +80,7 @@ class FlappyBird:
 			self.window.blit(self.groundImage, [0, 350])
 			pygame.draw.rect(self.window, (0,0,180), [self.pipe_x, self.pipe_y, self.pipe_width, self.height])
 			# for invisible pipe
-			pygame.draw.rect(self.window, (255, 255, 255), [self.invisible_pipe_x, self.invisible_pipe_y, 30, self.invisible_pipe_len])
+			pygame.draw.rect(self.window, (255, 255, 255), [self.invisible_pipe_x, self.invisible_pipe_y, 30, self.invisible_pipe_len], 1)
 			pygame.display.update()
 
 			# pipe spawn point
@@ -87,7 +98,8 @@ class FlappyBird:
 			if self.y_pos < 0:
 				self.y_pos = 0
 				self.velocity = 0
-			# Bird
+			
+			# Render Bird
 			self.window.blit(self.birdImage, [self.x_pos, self.y_pos])
 			pygame.display.update()
 			self.clock.tick(self.fps)
@@ -105,18 +117,7 @@ class FlappyBird:
 				print("pipe y coordinate: ", self.y_pos)
 			else:
 				self.score += 1
-			# don't forget to add score
-
-			# for pipe A (the Upper one)
-			# if self.pipe_x == self.x_pos:
-			# 	self.score += 1
-			# 	print("Your score: ", self.score)
-			# 	if self.y_pos <= self.pipeA_length:
-			# 		self.run = True
-			# 		print("You crashed: pipe")
-			# 		print("Pipe ax coordinate:", self.pipe_x)
-			# 		print("Pipe A Length: ", self.pipeA_length)
-			# 		print("Bird y-coordinate: ", self.y_pos)
+			# Render score 
 
 start = FlappyBird()
 start.flyBird()
