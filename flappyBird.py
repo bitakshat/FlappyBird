@@ -56,14 +56,7 @@ class FlappyBird:
 				# adding movements
 				if event.type == pygame.KEYDOWN:
 					if event.key == pygame.K_SPACE:
-						self.velocity -= self.gravity*15
-
-			# text and score
-			self.text = self.font.render('Score', True, (0,0,0))
-			self.render_score = self.font.render(f"{self.score}", True, (0,0,0))
-			self.window.blit(self.render_score, (430, 20) )
-			self.window.blit(self.text, (330, 20))
-			pygame.display.update()
+						self.velocity -= self.gravity*17
 
 			self.window.fill((130,255,255))
 			# adding gravity for bird
@@ -110,14 +103,19 @@ class FlappyBird:
 				self.run = True
 				print("You crashed: boundry")
 			# True if player hits the pipe objects
-			elif((self.x_pos == self.invisible_pipe_x) and (self.y_pos >= self.invisible_pipe_y+self.invisible_pipe_len or self.y_pos <= self.invisible_pipe_y)):
+			elif((self.x_pos == self.invisible_pipe_x - self.pipe_width) and (self.y_pos >= self.invisible_pipe_y+self.invisible_pipe_len or self.y_pos <= self.invisible_pipe_y)):
 				self.run = True
 				print("You crashed: Pipe")
 				print("bird y coordinate: ", self.y_pos)
 				print("pipe y coordinate: ", self.y_pos)
-			else:
-				self.score += 1
-			# Render score 
+				
+			# text and score
+			self.score += 1
+			self.text = self.font.render('Score:', True, (0,0,0))
+			self.render_score = self.font.render(f"{self.score}", True, (0,0,0))
+			self.window.blit(self.render_score, (430, 20) )
+			self.window.blit(self.text, (330, 20))
+			pygame.display.update()
 
 start = FlappyBird()
 start.flyBird()
